@@ -17,7 +17,7 @@ class ColorcodeconverterServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'colorcodeconverter');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'colorcodeconverter');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        //$this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
